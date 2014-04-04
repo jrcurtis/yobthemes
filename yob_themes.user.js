@@ -4,7 +4,8 @@
 // @description Play the YOB Themes while you post
 // @include     http://forums.somethingawful.com/*
 // @version     4
-// @grant       none
+// @grant       GM_getValue
+// @grant       GM_setValue
 // ==/UserScript==
 
 var BASE_URL = "http://muskratwaltz.com/audio/themes/";
@@ -239,6 +240,9 @@ for (var i = 0; i < posts.length; i++) {
     posts[i].setAttribute("data-yob-theme", user_id);
 }
 
+var minified = GM_getValue("minified", false);
+var muted = GM_getValue("muted", false);
+
 var minify = document.createElement("img");
 minify.src = "http://muskratwaltz.com/audio/themes/minify.png";
 minify.style.display = "inline-block";
@@ -283,9 +287,7 @@ player.appendChild(mute);
 player.appendChild(unmute);
 
 document.body.appendChild(player);
-
-var minified = false;
-var muted = false;
+player.style.visibility = minified ? "hidden" : "visible";
 
 var onclickMinify = function (e) {
     if (minified) {
@@ -294,6 +296,7 @@ var onclickMinify = function (e) {
         player.style.visibility = "hidden";
     }
     minified = !minified;
+    GM_setValue("minified", minified);
     e.stopPropagation();
 };
 
@@ -319,6 +322,7 @@ document.addEventListener("mousemove", onmousemove);
 
 var onclickMute = function (e) {
     muted = true;
+    GM_setValue("muted", muted);
     mute.style.display = "none";
     unmute.style.display = "inline";
 
@@ -327,13 +331,19 @@ var onclickMute = function (e) {
             audio[key].muted = true;
         }
     }
-    e.stopPropagation();
+    if (e) {
+        e.stopPropagation();
+    }
 };
 
 mute.addEventListener("click", onclickMute);
+if (muted) {
+    onclickMute();
+}
 
 var onclickUnmute = function (e) {
     muted = false;
+    GM_setValue("muted", muted);
     mute.style.display = "inline";
     unmute.style.display = "none";
     
@@ -342,7 +352,9 @@ var onclickUnmute = function (e) {
             audio[key].muted = false;
         }
     }
-    e.stopPropagation();
+    if (e) {
+        e.stopPropagation();
+    }
 };
 
 unmute.addEventListener("click", onclickUnmute);
@@ -352,24 +364,21 @@ var minTheme = null;
 var onscroll = function () {
     var minPost = -1;
     var minDist = Number.MAX_VALUE;
-    var maxOnscreen = 0;
-    var min_user_id = null;
+    var minUserId = null;
     for (var i = 0; i < posts.length; i++) {
         var rect = posts[i].parentNode.parentNode.getBoundingClientRect();
         var y = rect.top + rect.height / 2;
         var dist = Math.abs(y - window.innerHeight / 2);
-        var onscreen = Math.min(rect.bottom, window.innerHeight) - Math.max(rect.top, 0);
         
-        if (onscreen > maxOnscreen) {
-            maxOnscreen = onscreen;
+        if (dist < rect.height / 2) {
             minPost = i;
             minDist = dist;
-            min_user_id = posts[i].getAttribute("data-yob-theme");
+            minUserId = posts[i].getAttribute("data-yob-theme");
             if (minTheme) {
                 minTheme.volume = 0;
             }
             
-            if (!min_user_id) {
+            if (!minUserId) {
                minTheme = null;
                continue;
             }
@@ -382,15 +391,17 @@ var onscroll = function () {
                 volume = Math.max(1 - pow / (1 + pow), 0);
             }
             volume = Math.floor(volume * 100) / 100;
-            minTheme = audio[min_user_id];
+            minTheme = audio[minUserId];
             if (minTheme) {
                 minTheme.volume = volume;
             }
+            
+            break;
         }
     }
-    if (min_user_id) {
-        themeLink.textContent = themes[min_user_id].title;
-        themeLink.href = themes[min_user_id].url;
+    if (minUserId) {
+        themeLink.textContent = themes[minUserId].title;
+        themeLink.href = themes[minUserId].url;
     } else {
         themeLink.textContent = "Nothing at all";
         themeLink.href = "http://www.youtube.com/watch?v=i6vPQL_aYfI";
