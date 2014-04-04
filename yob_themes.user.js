@@ -10,47 +10,211 @@
 var BASE_URL = "http://muskratwaltz.com/audio/themes/";
 
 var themes = {
-    "205623": "resident_evil.mp3",
-     "46995": "kill_la_kill.mp3",
-     "82110": "robot_rock.mp3",
-     "143557": "you_get_high.mp3",
-     "178339": "bandit_radio.mp3",
-     "88310": "burning_bridges.mp3",
-     "77545": "smoke_weed.mp3",
-     "19302": "tupac_at_mcdonalds.mp3",
-     "135560": "foot_foot.mp3",
-     "149714": "althea.mp3",
-     "187305": "soothing.mp3",
-     "111346": "heart_survive.mp3",
-     "49474": "voodoo.mp3",
-     "140665": "hakke.mp3",
-     "205323": "black_sabbath.mp3",
-     "118951": "nightcall.mp3",
-     "207515": "closer_to_the_heart.mp3",
-     "75360": "polite_dance_song.mp3",
-     "208035": "no_love.mp3",
-     "57006": "brotherman_bill.mp3",
-     "155641": "titantron.mp3",
-     "100569": "star_destroyer.mp3",
-     "193897": "no_tengo_dinero.mp3",
-     "175496": "crazy_chili_dogs.mp3",
-     "203662": "magnum_pi.mp3",
-     "204584": "wu_tang.mp3",
-     "137848": "monkey_news.mp3",
-     "167001": "maradun.mp3",
-     "208521": "inuka.mp3",
-     "202925": "iwatodai.mp3",
-     "167191": "bob.mp3",
-     "208558": "aruarian.mp3",
-     "173896": "kush_cloud.mp3",
-     "72606": "move_on_up.mp3",
-     "136188": "pizza_bell.mp3",
-     "175825": "turks.mp3",
-     "180145": "parents_suck.mp3",
-     "137492": "friend_like_me.mp3",
-     "161815": "feels.mp3",
-     "163058": "fala.mp3",
-     "108924": "oppressed.mp3"
+    "205623": {
+        "file": "resident_evil.mp3",
+        "url": "https://www.youtube.com/watch?v=0kcF7E69C6Q",
+        "title": "Mansion Basement"
+    },
+    "46995": {
+        "file": "kill_la_kill.mp3",
+        "url": "https://www.youtube.com/watch?v=-SSz_F5wOiM",
+        "title": "Don't lose your way"
+    },
+    "82110": {
+        "file": "robot_rock.mp3",
+        "url": "https://soundcloud.com/d-j-detweiler/daft-punk-robot-rock-d-j",
+        "title": "Robot Rock"
+    },
+    "143557": {
+        "file": "you_get_high.mp3",
+        "url": "https://www.youtube.com/watch?v=4IfREYplcjI",
+        "title": "You Get High"
+    },
+    "178339": {
+        "file": "bandit_radio.mp3",
+        "url": "https://www.youtube.com/watch?v=-9wgI6rCbY4",
+        "title": "Bandit Radio"
+    },
+    "88310": {
+        "file": "burning_bridges.mp3",
+        "url": "https://www.youtube.com/watch?v=kgeIINs1TrQ",
+        "title": "Burning Bridges"
+    },
+    "77545": {
+        "file": "smoke_weed.mp3",
+        "url": "https://www.youtube.com/watch?v=2NszEN3mNic",
+        "title": "Smoke Weed Every Day"
+    },
+    "19302": {
+        "file": "tupac_at_mcdonalds.mp3",
+        "url": "https://www.youtube.com/watch?v=RgU02Rom244",
+        "title": "I Saw Tupac at McDonalds"
+    },
+    "135560": {
+        "file": "foot_foot.mp3",
+        "url": "https://www.youtube.com/watch?v=XR9d4ESlpHY",
+        "title": "My Pal Foot Foot"
+    },
+    "149714": {
+        "file": "althea.mp3",
+        "url": "https://www.youtube.com/watch?v=VnTgoI6JTZQ",
+        "title": "Althea"
+    },
+    "187305": {
+        "file": "soothing.mp3",
+        "url": "https://www.youtube.com/watch?v=cr6eFl7hCiA",
+        "title": "The soothing sounds of 14 pitched down crying babies"
+    },
+    "111346": {
+        "file": "heart_survive.mp3",
+        "url": "https://www.youtube.com/watch?v=t4Vnb57jNv8",
+        "title": "Will My Heart Survive"
+    },
+    "49474": {
+        "file": "voodoo.mp3",
+        "url": "https://www.youtube.com/watch?v=PQhtR-yoObs",
+        "title": "Voodoo, Roots 'n Grog"
+    },
+    "140665": {
+        "file": "hakke.mp3",
+        "url": "https://www.youtube.com/watch?v=tz1aZq3axgg",
+        "title": "Hakke en Zage"
+    },
+    "205323": {
+        "file": "black_sabbath.mp3",
+        "url": "https://www.youtube.com/watch?v=YpBBUMjo8Ng&feature=youtu.be&t=54m23s",
+        "title": "I dunno something by Black Sabbath"
+    },
+    "118951": {
+        "file": "nightcall.mp3",
+        "url": "https://www.youtube.com/watch?v=MV_3Dpw-BRY&feature=youtu.be",
+        "title": "Nightcall"
+    },
+    "207515": {
+        "file": "closer_to_the_heart.mp3",
+        "url": "https://www.youtube.com/watch?v=ouupqXlFbyQ",
+        "title": "Closer to the heart"
+    },
+    "75360": {
+        "file": "polite_dance_song.mp3",
+        "url": "https://www.youtube.com/watch?v=HhDVSiidt_4",
+        "title": "Polite Dance Song"
+    },
+    "208035": {
+        "file": "no_love.mp3",
+        "url": "https://www.youtube.com/watch?v=2MHhLDCJ57E",
+        "title": "No Love"
+    },
+    "57006": {
+        "file": "brotherman_bill.mp3",
+        "url": "https://www.youtube.com/watch?v=qkUVToIfrKg",
+        "title": "Brotherman Bill"
+    },
+    "155641": {
+         "file": "titantron.mp3",
+        "url": "https://www.youtube.com/watch?v=0hlO_1JGTww",
+        "title": "Titantron"
+     },
+    "100569": {
+        "file": "star_destroyer.mp3",
+        "url": "https://www.youtube.com/watch?v=1PPXsKrV2Ws",
+        "title": "Star Destroyer"
+    },
+    "193897": {
+        "file": "no_tengo_dinero.mp3",
+        "url": "https://www.youtube.com/watch?v=N4nNZbauQl0",
+        "title": "No tengo dinero"
+    },
+    "175496": {
+        "file": "crazy_chili_dogs.mp3",
+        "url": "https://www.youtube.com/watch?v=5k1Znk7P75c",
+        "title": "Crazy Chili Dog"
+    },
+    "203662": {
+        "file": "magnum_pi.mp3",
+        "url": "https://www.youtube.com/watch?v=3CquMO3vJvo",
+        "title": "Magnum PI"
+    },
+    "204584": {
+        "file": "wu_tang.mp3",
+        "url": "https://www.youtube.com/watch?v=ucdEIMKTD7U&feature=youtu.be",
+        "title": "Forget me not"
+    },
+    "137848": {
+        "file": "monkey_news.mp3",
+        "url": "https://www.youtube.com/watch?v=zQwFIu6pdkA",
+        "title": "Monkey News"
+    },
+    "167001": {
+        "file": "maradun.mp3",
+        "url": "https://www.youtube.com/watch?v=UB7bxRNswo0",
+        "title": "Ana Maradun"
+    },
+    "208521": {
+        "file": "inuka.mp3",
+        "url": "https://dl.dropboxusercontent.com/u/90334294/Inuka3l.mp3",
+        "title": "Inuka"
+    },
+    "202925": {
+        "file": "iwatodai.mp3",
+        "url": "https://www.youtube.com/watch?v=lXNQrwX9QOU",
+        "title": "Iwatodai Dorm"
+    },
+    "167191": {
+        "file": "bob.mp3",
+        "url": "https://www.youtube.com/watch?v=9A4_qL_CU-k",
+        "title": "Bob The Builder Theme Song"
+    },
+    "208558": {
+        "file": "aruarian.mp3",
+        "url": "https://www.youtube.com/watch?v=g9hwjQBQFIo",
+        "title": "Aruarian dance"
+    },
+    "173896": {
+        "file": "kush_cloud.mp3",
+        "url": "https://www.youtube.com/watch?v=V9XPJvWc1-o",
+        "title": "Kush Cloud"
+    },
+    "72606": {
+        "file": "move_on_up.mp3",
+        "url": "https://www.youtube.com/watch?v=6Z66wVo7uNw",
+        "title": "Move On Up"
+    },
+    "136188": {
+        "file": "pizza_bell.mp3",
+        "url": "https://www.youtube.com/watch?v=SIt2CdbBo_w",
+        "title": "Combination Pizza Hut and Taco Bell"
+    },
+    "175825": {
+        "file": "turks.mp3",
+        "url": "https://www.youtube.com/watch?v=jSAjNWypykQ",
+        "title": "Turks Theme"
+    },
+    "180145": {
+        "file": "parents_suck.mp3",
+        "url": "https://www.youtube.com/watch?v=eDxa2tmbhSg",
+        "title": "Parents Suck"
+    },
+    "137492": {
+        "file": "friend_like_me.mp3",
+        "url": "https://www.youtube.com/watch?v=CXiitlwnXPY",
+        "title": "You Ain't Never Had A Friend Like Me"
+    },
+    "161815": {
+        "file": "feels.mp3",
+        "url": "https://www.youtube.com/watch?v=8Pl1YU1rXuE",
+        "title": "Feels So Good"
+    },
+    "163058": {
+        "file": "fala.mp3",
+        "url": "https://www.youtube.com/watch?v=vwdnNyySDLI&feature=youtu.b",
+        "title": "Falalalan"
+    },
+    "108924": {
+        "file": "oppressed.mp3",
+        "url": "https://www.youtube.com/watch?v=vgvXCg1e_T8",
+        "title": "Oppressed People"
+    }
 };
 
 var audio = {};
@@ -67,7 +231,7 @@ for (var i = 0; i < posts.length; i++) {
 
     if (!audio[user_id]) {
         audio[user_id] = document.createElement("audio");
-        audio[user_id].setAttribute("src", BASE_URL + themes[user_id]);
+        audio[user_id].setAttribute("src", BASE_URL + themes[user_id].file);
         audio[user_id].setAttribute("autoplay", true);
         audio[user_id].setAttribute("loop", true);
         audio[user_id].volume = 0;
@@ -75,25 +239,69 @@ for (var i = 0; i < posts.length; i++) {
     posts[i].setAttribute("data-yob-theme", user_id);
 }
 
+var minify = document.createElement("img");
+minify.src = "http://muskratwaltz.com/audio/themes/minify.png";
+minify.style.position = "absolute";
+minify.style.right = "3px";
+var mute = document.createElement("img");
+mute.src = "http://muskratwaltz.com/audio/themes/speaker_mute.png";
+mute.style.position = "absolute";
+mute.style.right = "3px";
+var unmute = document.createElement("img");
+unmute.src = "http://muskratwaltz.com/audio/themes/speaker.png";
+unmute.style.position = "absolute";
+unmute.style.right = "3px";
+unmute.style.visibility = "hidden";
+
+var player = document.createElement("div");
+player.style.position = "fixed";
+player.style.width = "20em";
+player.style.height = "4em";
+player.style.right = "3px";
+player.style.top = "3px";
+player.style.backgroundColor = "#CCFFFF";
+player.style.borderWidth = "3px";
+player.style.borderStyle = "solid";
+player.style.borderColor = "#CCCCFF";
+player.style.borderRadius = "5px";
+player.style.fontFamily = "Comic Sans MS";
+player.style.zIndex = "9999";
+player.style.overflow = "ellipsis";
+
+player.innerHTML = "<i>You are listening to...</i>";
+player.appendChild(minify);
+player.innerHTML += "<br/>";
+
+var themeLink = document.createElement("a");
+themeLink.style.whiteSpace = "nowrap";
+
+player.appendChild(themeLink);
+player.appendChild(mute);
+player.appendChild(unmute);
+
+document.body.appendChild(player);
+
 var minTheme = null;
 
 var onscroll = function () {
     var minPost = -1;
     var minDist = Number.MAX_VALUE;
+    var min_user_id = null;
     for (var i = 0; i < posts.length; i++) {
         var rect = posts[i].parentNode.parentNode.getBoundingClientRect();
         var y = rect.top + rect.height / 2;
         var dist = Math.abs(y - window.innerHeight / 2);
-        dist /= window.innerHeight / 10;
+        dist /= (window.innerHeight + rect.height) / 20;
         
         if (dist < minDist) {
             minPost = i;
             minDist = dist;
+            min_user_id = posts[i].getAttribute("data-yob-theme");
             if (minTheme) {
                 minTheme.volume = 0;
             }
             
-            if (!posts[i].getAttribute("data-yob-theme")) {
+            if (!user_id) {
                minTheme = null;
                continue;
             }
@@ -101,11 +309,15 @@ var onscroll = function () {
             var scaled = Math.pow(dist, 3);
             var volume = 1 - scaled / (1 + scaled);
             volume = Math.floor(volume * 100) / 100;
-            minTheme = audio[posts[i].getAttribute("data-yob-theme")];
+            minTheme = audio[user_id];
             if (minTheme) {
                 minTheme.volume = volume;
             }
         }
+    }
+    if (min_user_id) {
+        themeLink.textContent = themes[min_user_id].title;
+        themeLink.href = themes[min_user_id].url;
     }
 };
 
