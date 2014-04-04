@@ -3,7 +3,7 @@
 // @namespace   MW
 // @description Play the YOB Themes while you post
 // @include     http://forums.somethingawful.com/*
-// @version     3
+// @version     4
 // @grant       none
 // ==/UserScript==
 
@@ -241,7 +241,9 @@ for (var i = 0; i < posts.length; i++) {
 
 var minify = document.createElement("img");
 minify.src = "http://muskratwaltz.com/audio/themes/minify.png";
+minify.style.display = "inline-block";
 minify.style.position = "absolute";
+minify.style.zIndex = "9999";
 minify.style.right = "3px";
 var mute = document.createElement("img");
 mute.src = "http://muskratwaltz.com/audio/themes/speaker_mute.png";
@@ -251,22 +253,22 @@ var unmute = document.createElement("img");
 unmute.src = "http://muskratwaltz.com/audio/themes/speaker.png";
 unmute.style.position = "absolute";
 unmute.style.right = "3px";
-unmute.style.visibility = "hidden";
+unmute.style.display = "none";
 
 var player = document.createElement("div");
 player.style.position = "fixed";
 player.style.width = "20em";
 player.style.height = "4em";
 player.style.right = "3px";
-player.style.top = "3px";
+player.style.bottom = "5px";
 player.style.backgroundColor = "#CCFFFF";
 player.style.borderWidth = "3px";
 player.style.borderStyle = "solid";
 player.style.borderColor = "#CCCCFF";
 player.style.borderRadius = "5px";
 player.style.fontFamily = "Comic Sans MS";
-player.style.zIndex = "9999";
-player.style.overflow = "ellipsis";
+player.style.textOverflow = "ellipsis";
+player.style.boxShadow = "0px 0px 4px 4px rgba(0, 0, 0, 0.3)";
 
 player.innerHTML = "<i>You are listening to...</i>";
 player.appendChild(minify);
@@ -274,6 +276,7 @@ player.innerHTML += "<br/>";
 
 var themeLink = document.createElement("a");
 themeLink.style.whiteSpace = "nowrap";
+themeLink.target = "_blank";
 
 player.appendChild(themeLink);
 player.appendChild(mute);
@@ -281,19 +284,84 @@ player.appendChild(unmute);
 
 document.body.appendChild(player);
 
-var minTheme = null;
+var minified = false;
+var muted = false;
 
+var onclickMinify = function (e) {
+    if (minified) {
+        player.style.visibility = "visible";
+    } else {
+        player.style.visibility = "hidden";
+    }
+    minified = !minified;
+    e.stopPropagation();
+};
+
+minify.addEventListener("click", onclickMinify);
+player.addEventListener("click", onclickMinify);
+
+var onmousemove = function (e) {
+    if (!minified) {
+        return;
+    }
+    var rect = player.getBoundingClientRect();
+    rect.left += window.scrollX;
+    rect.top += window.scrollY;
+    if (e.clientX > rect.left && e.clientX < rect.left + rect.width
+        && e.clientY > rect.top && e.clientY < rect.top + rect.height) {
+        player.style.visibility = "visible";
+    } else {
+        player.style.visibility = "hidden";
+    }
+};
+
+document.addEventListener("mousemove", onmousemove);
+
+var onclickMute = function (e) {
+    muted = true;
+    mute.style.display = "none";
+    unmute.style.display = "inline";
+
+    for (var key in audio) {
+        if (audio.hasOwnProperty(key)) {
+            audio[key].muted = true;
+        }
+    }
+    e.stopPropagation();
+};
+
+mute.addEventListener("click", onclickMute);
+
+var onclickUnmute = function (e) {
+    muted = false;
+    mute.style.display = "inline";
+    unmute.style.display = "none";
+    
+    for (var key in audio) {
+        if (audio.hasOwnProperty(key)) {
+            audio[key].muted = false;
+        }
+    }
+    e.stopPropagation();
+};
+
+unmute.addEventListener("click", onclickUnmute);
+
+var fadeDist = 100;
+var minTheme = null;
 var onscroll = function () {
     var minPost = -1;
     var minDist = Number.MAX_VALUE;
+    var maxOnscreen = 0;
     var min_user_id = null;
     for (var i = 0; i < posts.length; i++) {
         var rect = posts[i].parentNode.parentNode.getBoundingClientRect();
         var y = rect.top + rect.height / 2;
         var dist = Math.abs(y - window.innerHeight / 2);
-        dist /= (window.innerHeight + rect.height) / 20;
+        var onscreen = Math.min(rect.bottom, window.innerHeight) - Math.max(rect.top, 0);
         
-        if (dist < minDist) {
+        if (onscreen > maxOnscreen) {
+            maxOnscreen = onscreen;
             minPost = i;
             minDist = dist;
             min_user_id = posts[i].getAttribute("data-yob-theme");
@@ -301,15 +369,20 @@ var onscroll = function () {
                 minTheme.volume = 0;
             }
             
-            if (!user_id) {
+            if (!min_user_id) {
                minTheme = null;
                continue;
             }
-            
-            var scaled = Math.pow(dist, 3);
-            var volume = 1 - scaled / (1 + scaled);
+
+            var volume = 0;
+            if (dist < Math.max(rect.height / 2 - fadeDist, 0)) {
+                volume = 1;
+            } else {
+                var pow = Math.pow((dist - Math.max(rect.height / 2 - fadeDist, 0)) / fadeDist * 5, 2);
+                volume = Math.max(1 - pow / (1 + pow), 0);
+            }
             volume = Math.floor(volume * 100) / 100;
-            minTheme = audio[user_id];
+            minTheme = audio[min_user_id];
             if (minTheme) {
                 minTheme.volume = volume;
             }
@@ -318,6 +391,9 @@ var onscroll = function () {
     if (min_user_id) {
         themeLink.textContent = themes[min_user_id].title;
         themeLink.href = themes[min_user_id].url;
+    } else {
+        themeLink.textContent = "Nothing at all";
+        themeLink.href = "http://www.youtube.com/watch?v=i6vPQL_aYfI";
     }
 };
 
