@@ -3,7 +3,7 @@
 // @namespace   MW
 // @description Play the YOB Themes while you post
 // @include     http://forums.somethingawful.com/*
-// @version     5
+// @version     6
 // @grant       GM_getValue
 // @grant       GM_setValue
 // ==/UserScript==
@@ -296,6 +296,21 @@ var themes = {
         "file": "addams_groove.mp3",
         "url": "https://www.youtube.com/watch?v=jqQwzgixHAM#t=14",
         "title": "Addams Groove"
+    },
+    "85738": {
+        "file": "odds_are.mp3",
+        "url": "https://www.youtube.com/watch?v=7Sw9Fh6uk4Q",
+        "title": "Odds Are"
+    },
+    "207902": {
+        "file": "turn_down.mp3",
+        "url": "https://www.youtube.com/watch?v=kTnUpYVPAVY",
+        "title": "Turn down for what"
+    },
+    "188690": {
+        "file": "rznv.mp3",
+        "url": "http://tindeck.com/listen/rznv",
+        "title": "BYOB Reggae"
     }
 };
 
